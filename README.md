@@ -1,4 +1,4 @@
-# 💪 FitLife
+# FitLife
 
 **FitLife** is a web-based fitness platform designed to help users track their health, achieve fitness goals, and connect with professional trainers—all in one place.
 
