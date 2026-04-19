@@ -1,6 +1,6 @@
-# FitLife
+# FitPro
 
-**FitLife** is a web-based fitness platform designed to help users track their health, achieve fitness goals, and connect with professional trainers—all in one place.
+**FitPro** is a web-based fitness platform designed to help users track their health, achieve fitness goals, and connect with professional trainers—all in one place.
 
 The platform combines essential fitness tracking features with a unique **trainer–trainee marketplace**, allowing users to find, book, and hire trainers based on availability, similar to modern on-demand service platforms.
 
