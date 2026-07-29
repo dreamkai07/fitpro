@@ -9,16 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*",
-        allowedHeaders = "*",
-        methods = {
-                RequestMethod.GET,
-                RequestMethod.POST,
-                RequestMethod.PUT,
-                RequestMethod.DELETE,
-                RequestMethod.OPTIONS
-        }
-)
 public class AuthController {
 
     private final AuthService authService;
@@ -55,11 +45,5 @@ public class AuthController {
                     .body("{\"message\": \""
                             + e.getMessage() + "\"}");
         }
-    }
-
-    // Handle OPTIONS preflight
-    @RequestMapping(method = RequestMethod.OPTIONS)
-    public ResponseEntity<?> handleOptions() {
-        return ResponseEntity.ok().build();
     }
 }
