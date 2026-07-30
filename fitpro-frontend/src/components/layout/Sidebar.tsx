@@ -9,36 +9,32 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
-const menu = [
-  {
-    title: "Dashboard",
-    icon: LayoutDashboard,
-    path: "/dashboard",
-  },
-  {
-    title: "Workout",
-    icon: Dumbbell,
-    path: "/workout",
-  },
-  {
-    title: "Diet",
-    icon: Salad,
-    path: "/diet",
-  },
-  {
-    title: "Goals",
-    icon: Target,
-    path: "/goals",
-  },
-  {
-    title: "Profile",
-    icon: User,
-    path: "/profile",
-  },
-];
+
 
 export default function Sidebar() {
-  const { logout } = useAuth();
+  const { logout, role } = useAuth();
+
+  const getMenu = () => {
+    if (role === "TRAINER") {
+      return [
+        { title: "Trainer Dashboard", icon: LayoutDashboard, path: "/trainer-dashboard" },
+        { title: "Profile", icon: User, path: "/profile" },
+      ];
+    }
+    // Admin omitted for brevity or could be added
+    
+    // Default Trainee menu
+    return [
+      { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+      { title: "Workout", icon: Dumbbell, path: "/workout" },
+      { title: "Diet", icon: Salad, path: "/diet" },
+      { title: "Goals", icon: Target, path: "/goals" },
+      { title: "Find Trainers", icon: User, path: "/trainers" },
+      { title: "Profile", icon: User, path: "/profile" },
+    ];
+  };
+
+  const menu = getMenu();
 
   return (
     <aside className="hidden md:flex w-64 flex-col bg-slate-950 border-r border-slate-800">

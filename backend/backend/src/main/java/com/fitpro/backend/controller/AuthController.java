@@ -46,4 +46,28 @@ public class AuthController {
                             + e.getMessage() + "\"}");
         }
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getProfile(java.security.Principal principal) {
+        try {
+            com.fitpro.backend.model.User user = authService.getUserByUsername(principal.getName());
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(404)
+                    .body("{\"message\": \"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<?> updateProfile(java.security.Principal principal, @RequestBody com.fitpro.backend.dto.UpdateProfileRequest request) {
+        try {
+            com.fitpro.backend.model.User user = authService.updateUser(principal.getName(), request);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(400)
+                    .body("{\"message\": \"" + e.getMessage() + "\"}");
+        }
+    }
 }

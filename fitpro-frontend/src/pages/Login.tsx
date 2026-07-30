@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 export default function Login() {
   const { login } = useAuth();
 
+  const [role, setRole] = useState<"TRAINEE" | "TRAINER" | "ADMIN">("TRAINEE");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,9 +22,12 @@ export default function Login() {
       const res = await loginApi({
         username,
         password,
+        role,
       });
 
-      login(res.data.token, res.data.username);
+      // You can store the role in context or localStorage if needed
+      localStorage.setItem("userRole", role);
+      login(res.data.token, res.data.username, res.data.role);
     } catch (err: any) {
       setError(
         err?.response?.data?.message || "Invalid username or password"
@@ -43,8 +47,25 @@ export default function Login() {
           FitPro Login
         </h1>
 
+        <div className="flex justify-center gap-2 mb-6">
+          {(["TRAINEE", "TRAINER", "ADMIN"] as const).map((r) => (
+            <button
+              key={r}
+              type="button"
+              onClick={() => setRole(r)}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
+                role === r
+                  ? "bg-green-500 text-white"
+                  : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              }`}
+            >
+              {r.charAt(0) + r.slice(1).toLowerCase()}
+            </button>
+          ))}
+        </div>
+
         {error && (
-          <p className="text-red-400 text-sm mb-4">
+          <p className="text-red-400 text-sm mb-4 text-center">
             {error}
           </p>
         )}
@@ -68,7 +89,7 @@ export default function Login() {
           disabled={loading}
           className="w-full bg-green-500 hover:bg-green-600 transition rounded-lg py-3 font-semibold text-white mb-4"
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Logging in..." : `Login as ${role.charAt(0) + role.slice(1).toLowerCase()}`}
         </button>
 
         <p className="text-center text-slate-400 text-sm">

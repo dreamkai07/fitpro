@@ -7,6 +7,12 @@ import Diet from "../pages/Diet";
 import AppLayout from "../components/layout/AppLayout";
 import { useAuth } from "../context/AuthContext";
 
+import Goals from "../pages/Goals";
+import Profile from "../pages/Profile";
+import FindTrainers from "../pages/FindTrainers";
+import TrainerProfilePage from "../pages/TrainerProfilePage";
+import TrainerDashboard from "../pages/TrainerDashboard";
+
 function ProtectedRoute() {
   const { isAuthenticated } = useAuth();
   
@@ -15,14 +21,6 @@ function ProtectedRoute() {
   }
 
   return <Outlet />;
-}
-
-function Goals() {
-  return <div className="p-10 text-4xl font-bold">Goals</div>;
-}
-
-function Profile() {
-  return <div className="p-10 text-4xl font-bold">Profile</div>;
 }
 
 export default function AppRouter() {
@@ -41,6 +39,9 @@ export default function AppRouter() {
           <Route path="/diet" element={<Diet />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/trainers" element={<FindTrainers />} />
+          <Route path="/trainers/:id" element={<TrainerProfilePage />} />
+          <Route path="/trainer-dashboard" element={<TrainerDashboard />} />
         </Route>
       </Route>
     </Routes>

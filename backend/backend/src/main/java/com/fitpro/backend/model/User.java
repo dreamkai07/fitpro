@@ -33,6 +33,11 @@ public class User {
     private String fitnessGoal;
     private String activityLevel;
     private String role = "USER";
+    private Integer calorieTarget;
+    private Integer proteinTarget;
+    
+    // Trainee specific: the ID of their currently active trainer (User ID)
+    private Long activeTrainerId;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

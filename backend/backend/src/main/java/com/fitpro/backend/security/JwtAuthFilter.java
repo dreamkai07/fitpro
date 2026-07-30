@@ -34,9 +34,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        // SKIP auth routes completely
+        // SKIP auth routes specifically for login and register
         String path = request.getServletPath();
-        if (path.startsWith("/api/auth")) {
+        if (path.equals("/api/auth/login") || path.equals("/api/auth/register")) {
             filterChain.doFilter(request, response);
             return;
         }

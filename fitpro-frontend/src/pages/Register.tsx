@@ -15,6 +15,7 @@ export default function Register() {
     height: "",
     fitnessGoal: "BUILD_MUSCLE",
     activityLevel: "MODERATE",
+    role: "TRAINEE",
   });
 
   const [loading, setLoading] = useState(false);
@@ -155,6 +156,17 @@ export default function Register() {
             <option value="MODERATELY_ACTIVE">Moderately Active</option>
             <option value="VERY_ACTIVE">Very Active</option>
             <option value="EXTRA_ACTIVE">Extra Active</option>
+          </select>
+          <select
+            name="role"
+            className="col-span-2 p-3 rounded-lg bg-slate-700 text-white outline-none"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
+            <option value="TRAINEE">Trainee</option>
+            <option value="TRAINER">Trainer</option>
+            <option value="ADMIN">Admin</option>
           </select>
         </div>
 
